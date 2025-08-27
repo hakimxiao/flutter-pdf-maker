@@ -22,7 +22,7 @@ class HomeView extends GetView<HomeController> {
             ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => controller.getPDF,
+        onPressed: () => controller.getPDF(),
         child: Icon(Icons.note),
       ),
     );
