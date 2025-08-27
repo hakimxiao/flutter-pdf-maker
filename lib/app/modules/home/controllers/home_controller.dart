@@ -27,9 +27,36 @@ class HomeController extends GetxController {
       pw.Page(
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) {
-          return pw.Center(
-            child: pw.Text("Hello World", style: pw.TextStyle(fontSize: 50)),
-          ); // Center
+          return pw.Container(
+            width: double.infinity,
+            color: PdfColors.amber,
+            child: pw.Column(
+              crossAxisAlignment: pw.CrossAxisAlignment.start,
+              children: [
+                pw.Container(
+                  color: PdfColors.purple300,
+                  alignment: pw.Alignment.center,
+                  width: double.infinity,
+                  child: pw.Text(
+                    'My Products',
+                    style: pw.TextStyle(fontSize: 50),
+                  ),
+                ),
+                pw.SizedBox(height: 20),
+                pw.Column(
+                  children:
+                      product
+                          .map(
+                            (e) => pw.Text(
+                              'ID : ${e['id']} - NAME : ${e['name']} - \n DESC : ${e['desc']} \n',
+                              style: pw.TextStyle(fontSize: 30),
+                            ),
+                          )
+                          .toList(),
+                ),
+              ],
+            ),
+          );
         },
       ),
     ); // Page
