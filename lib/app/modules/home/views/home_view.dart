@@ -9,15 +9,21 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('HomeView'),
-        centerTitle: true,
+      appBar: AppBar(title: const Text('HomeView'), centerTitle: true),
+      body: ListView.builder(
+        itemCount: controller.product.length,
+        itemBuilder:
+            (context, index) => ListTile(
+              leading: CircleAvatar(
+                child: Text('${controller.product[index]['id']}'),
+              ),
+              title: Text('${controller.product[index]['name']}'),
+              subtitle: Text('${controller.product[index]['desc']}'),
+            ),
       ),
-      body: const Center(
-        child: Text(
-          'HomeView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => controller.getPDF,
+        child: Icon(Icons.note),
       ),
     );
   }
